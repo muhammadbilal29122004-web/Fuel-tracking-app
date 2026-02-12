@@ -11,7 +11,6 @@ import {
    Hash,
    Droplets,
    ShieldCheck,
-   BarChart3,
    ChevronRight,
    Globe,
    CreditCard,
@@ -27,6 +26,7 @@ export default function LandingPage() {
    const [deliveryData, setDeliveryData] = useState<any>(null);
    const [loading, setLoading] = useState(false);
    const [error, setError] = useState('');
+
 
    const handleTrack = async (e: React.FormEvent) => {
       e.preventDefault();
@@ -55,7 +55,7 @@ export default function LandingPage() {
    };
 
    return (
-      <div className="min-h-screen bg-[#F8FAFC] font-sans selection:bg-blue-100 selection:text-blue-600 overflow-x-hidden">
+      <div className="min-h-screen flex flex-col bg-[#F8FAFC] font-sans selection:bg-blue-100 selection:text-blue-600 overflow-x-hidden">
          {/* Background Decorative Elements */}
          <div className="fixed top-0 left-0 w-full h-[600px] bg-gradient-to-b from-blue-50/50 to-transparent -z-10 pointer-events-none" />
          <div className="fixed -top-24 -right-24 w-96 h-96 bg-blue-100/40 rounded-full blur-3xl -z-10 animate-pulse" />
@@ -65,28 +65,19 @@ export default function LandingPage() {
          <nav className="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-slate-200/50 px-6 py-4">
             <div className="max-w-7xl mx-auto flex items-center justify-between">
                <div className="flex items-center gap-2.5 group cursor-pointer">
-                  <div className="bg-blue-600 p-2 rounded-xl shadow-blue-200 shadow-lg group-hover:scale-110 transition-transform duration-300">
+                  {/* <div className="bg-blue-600 p-2 rounded-xl shadow-blue-200 shadow-lg group-hover:scale-110 transition-transform duration-300">
                      <Fuel className="text-white w-6 h-6" />
-                  </div>
+                  </div> */}
                   <span className="text-2xl font-black text-slate-900 tracking-tighter">Fuel<span className="text-blue-600">Track</span></span>
                </div>
 
-               <div className="hidden md:flex items-center gap-8">
-                  <a href="#features" className="text-sm font-semibold text-slate-600 hover:text-blue-600 transition-colors">Features</a>
-               </div>
 
-               <Link
-                  href="/dashboard"
-                  className="group flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-xl text-sm font-bold hover:bg-slate-800 transition-all shadow-lg hover:shadow-slate-200"
-               >
-                  Admin Portal
-                  <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-               </Link>
+
             </div>
          </nav>
 
-         <main className="pt-32 pb-20 px-6 max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-12 items-start mb-24">
+         <main className="flex-grow flex items-center pt-20 pb-12 px-6 max-w-7xl mx-auto w-full">
+            <div className="grid lg:grid-cols-12 gap-12 items-center w-full">
                {/* Left Column: Hero & Search */}
                <motion.div
                   initial={{ opacity: 0, x: -30 }}
@@ -97,11 +88,11 @@ export default function LandingPage() {
                      <ShieldCheck className="w-4 h-4" />
                      Enterprise Logistics
                   </div>
-                  <h1 className="text-5xl md:text-6xl font-black text-slate-900 leading-[1.1] tracking-tight">
+                  <h1 className="text-6xl md:text-7xl font-black text-slate-900 leading-[1.05] tracking-tight">
                      Track Your <br />
                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Fuel Shipment.</span>
                   </h1>
-                  <p className="text-slate-600 text-lg leading-relaxed">
+                  <p className="text-slate-600 text-xl leading-relaxed max-w-lg">
                      Enter your 16-digit tracking or driver ID for real-time intelligence on your fuel delivery status.
                   </p>
 
@@ -113,19 +104,19 @@ export default function LandingPage() {
                            placeholder="Enter 16-digit ID (e.g. 1703...)"
                            value={trackingNumber}
                            onChange={(e) => setTrackingNumber(e.target.value.replace(/\D/g, '').slice(0, 16))}
-                           className="w-full bg-white border border-slate-200 rounded-2xl py-5 pl-12 pr-4 text-slate-900 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 transition-all outline-none font-bold text-lg shadow-sm"
+                           className="w-full bg-white border border-slate-200 rounded-2xl py-6 pl-12 pr-4 text-slate-900 focus:border-blue-500 focus:ring-4 focus:ring-blue-500/5 transition-all outline-none font-bold text-xl shadow-sm"
                            required
                         />
                      </div>
                      <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-black px-10 py-5 rounded-2xl transition-all shadow-xl shadow-blue-200 active:scale-[0.98] text-lg flex items-center justify-center gap-3"
+                        className="w-full bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white font-black px-10 py-6 rounded-2xl transition-all shadow-xl shadow-blue-200 active:scale-[0.98] text-xl flex items-center justify-center gap-3"
                      >
                         {loading ? (
-                           <div className="w-6 h-6 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+                           <div className="w-8 h-8 border-4 border-white/30 border-t-white rounded-full animate-spin" />
                         ) : (
-                           <>TRACK PACKAGE <Navigation className="w-5 h-5 shrink-0" /></>
+                           <>TRACK PACKAGE <Navigation className="w-6 h-6 shrink-0" /></>
                         )}
                      </button>
                   </form>
@@ -135,11 +126,11 @@ export default function LandingPage() {
                </motion.div>
 
                {/* Right Column: Comprehensive Results */}
-               <div className="lg:col-span-7 relative min-h-[500px]">
+               <div className="lg:col-span-7 relative min-h-[400px]">
                   {!deliveryData && !loading && (
                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-12 bg-white/40 backdrop-blur-sm rounded-[40px] border border-white border-dashed border-2 overflow-hidden">
                         {/* Modern Radar Tracking Animation */}
-                        <div className="relative w-48 h-48 mb-10 flex items-center justify-center">
+                        <div className="relative w-64 h-64 mb-12 flex items-center justify-center scale-110 sm:scale-125">
                            {/* Background Rings */}
                            <div className="absolute inset-0 border border-slate-200/50 rounded-full" />
                            <div className="absolute inset-4 border border-slate-200/50 rounded-full" />
@@ -366,62 +357,13 @@ export default function LandingPage() {
                </div>
             </div>
 
-            {/* Improved Feature Cards Section */}
-            <div id="features" className="pt-20 grid md:grid-cols-3 gap-8 mb-24">
-               {[
-                  { icon: Clock, title: "Real-time Intelligence", desc: "Our system provides millisecond-accurate updates on shipment locations across the entire network.", color: "text-blue-600", bg: "bg-blue-50" },
-                  { icon: ShieldCheck, title: "End-to-End Security", desc: "Every drop of fuel is tracked and accounted for with enterprise-grade blockchain-ready verification.", color: "text-indigo-600", bg: "bg-indigo-50" },
-                  { icon: BarChart3, title: "Digital Fleet Management", desc: "Full visibility into driver performance and vehicle utilization for optimized logistics operations.", color: "text-emerald-600", bg: "bg-emerald-50" }
-               ].map((feat, i) => (
-                  <motion.div
-                     key={i}
-                     whileHover={{ y: -5 }}
-                     className="bg-white p-10 rounded-[40px] border border-slate-200/60 shadow-sm hover:shadow-2xl hover:shadow-slate-200/50 transition-all group"
-                  >
-                     <div className={`w-16 h-16 ${feat.bg} ${feat.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 transition-transform shadow-sm`}>
-                        <feat.icon className="w-8 h-8" />
-                     </div>
-                     <h3 className="text-2xl font-bold text-slate-900 mb-4">{feat.title}</h3>
-                     <p className="text-slate-500 leading-relaxed font-medium">{feat.desc}</p>
-                  </motion.div>
-               ))}
-            </div>
+
          </main>
 
-         {/* Trust Badges Portfolio Style */}
-         <footer className="py-20 px-6 border-t border-slate-200/50 bg-white relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-1/4 h-full bg-blue-50/20 -skew-x-12" />
-            <div className="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 relative z-10">
-               <div className="col-span-2">
-                  <div className="flex items-center gap-2.5 mb-6">
-                     <div className="bg-blue-600 p-2 rounded-xl">
-                        <Fuel className="text-white w-6 h-6" />
-                     </div>
-                     <span className="text-2xl font-black text-slate-900 tracking-tighter">Fuel<span className="text-blue-600">Track</span></span>
-                  </div>
-                  <p className="text-slate-500 max-w-sm mb-8 leading-relaxed font-medium">
-                     FuelTrack is the next generation of fuel logistics management, bringing transparency and efficiency to the global energy supply chain.
-                  </p>
-               </div>
-
-               <div className="sm:col-span-1">
-                  <h4 className="font-bold text-slate-900 mb-8 uppercase tracking-[0.2em] text-[10px]">Ecosystem</h4>
-                  <ul className="space-y-4 text-sm font-bold text-slate-500">
-                     <li className="hover:text-blue-600 cursor-pointer transition-colors flex items-center gap-2">API Documentation <ChevronRight className="w-3 h-3" /></li>
-                     <li className="hover:text-blue-600 cursor-pointer transition-colors flex items-center gap-2">Network Status <ChevronRight className="w-3 h-3" /></li>
-                     <li className="hover:text-blue-600 cursor-pointer transition-colors flex items-center gap-2">Security Audits <ChevronRight className="w-3 h-3" /></li>
-                  </ul>
-               </div>
-            </div>
-
-            <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-8">
+         <footer className="py-4 px-6 border-t border-slate-200/50 bg-white h-auto">
+            <div className="max-w-7xl mx-auto flex justify-center">
                <div className="text-slate-400 text-sm font-semibold tracking-tight">
                   &copy; 2026 FuelTrack Logistics. Developed by <span className="text-blue-600 font-black relative px-1">Tech Sparks <span className="absolute bottom-0 left-0 w-full h-[6px] bg-blue-100 -z-10" /></span>
-               </div>
-               <div className="flex items-center gap-10 opacity-20 grayscale grayscale-100 font-black tracking-tighter text-2xl italic select-none">
-                  <span>KARACHI.OPS</span>
-                  <span>LOGISTICS+</span>
-                  <span>FUEL.CORE</span>
                </div>
             </div>
          </footer>
@@ -429,21 +371,3 @@ export default function LandingPage() {
    );
 }
 
-function Clock(props: any) {
-   return (
-      <svg
-         {...props}
-         xmlns="http://www.w3.org/2000/svg"
-         width="24"
-         height="24"
-         viewBox="0 0 24 24"
-         fill="none"
-         stroke="currentColor"
-         strokeWidth="2.5"
-         strokeLinecap="round"
-         strokeLinejoin="round"
-      >
-         <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
-      </svg>
-   );
-}

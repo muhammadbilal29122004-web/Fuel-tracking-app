@@ -8,9 +8,6 @@ import {
     Truck,
     LogOut,
     Fuel,
-    Settings,
-    Bell,
-    HelpCircle,
     ChevronRight
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -20,14 +17,13 @@ const menuItems = [
     { icon: BarChart3, label: 'Overview', href: '/dashboard' },
     { icon: Users, label: 'Drivers', href: '/dashboard/drivers' },
     { icon: Truck, label: 'Deliveries', href: '/dashboard/deliveries' },
-    { icon: Settings, label: 'Settings', href: '/dashboard/settings' },
 ];
 
 export default function Sidebar() {
     const pathname = usePathname();
 
     const handleLogout = () => {
-        localStorage.removeItem('isAdmin');
+        localStorage.removeItem('isLoggedIn');
         window.location.href = '/';
     };
 
@@ -82,23 +78,7 @@ export default function Sidebar() {
                     );
                 })}
 
-                <div className="pt-8 space-y-1.5">
-                    <p className="px-4 text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Support & System</p>
-                    <Link href="/dashboard/notifications" className={cn(
-                        "flex items-center gap-3.5 px-4 py-3.5 rounded-2xl transition-all group",
-                        pathname === '/dashboard/notifications' ? "bg-blue-600/10 text-blue-500" : "text-slate-500 hover:text-white hover:bg-slate-800/50"
-                    )}>
-                        <Bell className={cn("w-5 h-5", pathname === '/dashboard/notifications' ? "text-blue-500" : "group-hover:text-blue-400")} />
-                        <span className="font-bold text-sm">Notifications</span>
-                    </Link>
-                    <Link href="/dashboard/knowledge-base" className={cn(
-                        "flex items-center gap-3.5 px-4 py-3.5 rounded-2xl transition-all group",
-                        pathname === '/dashboard/knowledge-base' ? "bg-blue-600/10 text-blue-500" : "text-slate-500 hover:text-white hover:bg-slate-800/50"
-                    )}>
-                        <HelpCircle className={cn("w-5 h-5", pathname === '/dashboard/knowledge-base' ? "text-blue-500" : "group-hover:text-blue-400")} />
-                        <span className="font-bold text-sm">Knowledge Base</span>
-                    </Link>
-                </div>
+
             </nav>
 
             {/* Footer / User Profile Profile */}

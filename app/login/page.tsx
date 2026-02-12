@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Fuel, Lock, User, Eye, EyeOff } from 'lucide-react';
 import { motion } from 'framer-motion';
@@ -11,6 +11,13 @@ export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
+
+    useEffect(() => {
+        const auth = localStorage.getItem('isLoggedIn');
+        if (auth === 'true') {
+            router.push('/dashboard');
+        }
+    }, [router]);
 
     const handleLogin = (e: React.FormEvent) => {
         e.preventDefault();
